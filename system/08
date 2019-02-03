@@ -1,0 +1,2 @@
+Le fichier qui contient les clés RSA des machines autorisées à se connecter via SSH est ~/.ssh/authorized_keys
+Toutefois, le dossier .ssh/ n'existe pas tant qu'aucune clé n'a été générée.

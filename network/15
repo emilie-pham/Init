@@ -1,0 +1,10 @@
+Pour faire pointer intra.42.fr sur l'adresse 46.19.122.85, il suffirait d'ajouter dans le fichier /etc/hosts la ligne suivante :
+
+46.19.122.85	intra.42.fr
+
+Ainsi, le fichier hosts ressemblerait à :
+
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+46.19.122.85	intra.42.fr

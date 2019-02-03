@@ -1,0 +1,21 @@
+#!/bin/sh
+
+echo "Please enter the username you want to delete. Tap \033[31;1mexit\033[0m to cancel."
+read -r name
+
+while [ "$(who | grep -wc "$name")" = 0 ]
+do
+	if [ "$name" = 'exit' ]
+	then
+		exit
+	fi
+	echo "\033[31;1mInvalid username\033[0m. Please enter an existing username. Tap \033[31;1mexit\033[0m to cancel."
+	read -r name
+done
+if [ "$(who | grep -c "$name")" != 0 ]
+then
+	sudo pkill -KILL -u "$name"
+	sudo crontab -r -u "$name"
+	sudo userdel "$name"
+	echo "the user ""$name"" has been successfully deleted"
+fi

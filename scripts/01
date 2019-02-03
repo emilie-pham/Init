@@ -1,0 +1,6 @@
+#!/bin/sh
+
+while IFS=: read -r v1 v2 v3 v4 v5 v6 v7
+do
+	echo "\033[32;1m$v1\033[0m has UID \033[32;1m$v3\033[0m and path \033[32;1m$v7\033[0m"
+done < "/etc/passwd"

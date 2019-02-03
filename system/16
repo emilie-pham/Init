@@ -1,0 +1,6 @@
+Cron est un service qui permet de lancer des tâches à horaires régulières.
+
+La syntaxe s'écrit de la façon suivante :
+
+minutes	heures	jour/mois	mois	jour/semaine	tâche à faire
+0-60	0-23	1-31		1-12	1-7		tail -f /var/log/syslog

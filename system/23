@@ -1,0 +1,9 @@
+Pour se connecter en tant que nouvel utilisateur en session graphique, il suffit d'entrer son username et son mot de passe.
+
+En session ssh, il faut taper la commande suivante
+
+Dans la VM:
+ssh username@hostname
+
+Sur le terminal:
+ssh username@ipaddress

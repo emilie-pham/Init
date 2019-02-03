@@ -1,0 +1,3 @@
+#!/bin/sh
+
+host slash16.org | grep address | cut -d ' ' -f4

@@ -1,0 +1,1 @@
+Pour changer le nom du système de façon permanente, il faudrait modifier le fichier /etc/hostname et remplacer "debian" par le nouveau nom.

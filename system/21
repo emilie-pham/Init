@@ -1,0 +1,3 @@
+#!/bin/sh
+
+getent passwd | grep home | cut -d: -f1

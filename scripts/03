@@ -1,0 +1,61 @@
+#!/bin/sh
+
+echo "Please enter the name of the new file. Tap \033[31;1mexit\033[0m to cancel"
+read -r name
+if [ "$name" = 'exit' ]; then
+	exit
+fi
+while [ "$(ls -p | grep -v / | grep -wc "$name")"  = 1 ]
+do
+	echo "\033[31;1mThis file already exists\033[0m. Please use another file name. Tap \033[31;1mexit\033[0m to cancel."
+	read -r name
+	if [ "$name" = 'exit' ]
+	then
+		exit
+	fi
+done
+touch $name
+
+echo "Which permissions do you want for your new file ?\n1. read write (default)\n2. read write execute\n3. read only\n4. Other"
+read -r perm
+if [ "$perm" = 1 ]; then
+	chmod 644 "$name"
+elif [ "$perm" = 2 ]; then
+	chmod 755 "$name"
+elif [ "$perm" = 3 ]; then
+	chmod 444 "$name"
+elif [ "$perm" = 4 ]; then
+	echo "Please enter the desired permission number."
+	read -r number
+	while [ "$number" -ge 777 ]; do
+		echo "\033[31;1mInvalid permission number\033[0m. Please enter a valid permission number."
+		read -r number
+	done
+	chmod "$number" "$name"
+fi
+
+echo "In which folder do you want to put ""$name"" ? Tap \033[31;1mc\033[0m if you want to leave it in the current folder. Tap \033[31;1mexit\033[0m to cancel."
+read -r folder
+if [ "$folder" = 'exit' ]; then
+		rm "$name"
+		exit
+elif [ "$folder" = 'c' ]; then
+	exit
+fi
+while [ "$(ls -p | grep -v / | grep -wc "$folder")" != 0 ]
+do
+	echo "\033[31;1mThis name is already used for a file\033[0m. Please use another folder name.\nTap \033[31;1mc\033[0m if you want to leave it in the current folder. Tap \033[31;1mexit\033[0m to cancel."
+	read -r folder
+	if [ "$folder" = 'exit' ]; then
+		rm "$name"
+		exit
+	elif [ "$folder" = 'c' ]; then
+		exit
+	fi
+done
+if [ "$(ls -p | grep / | grep -wc "$folder")" != 0 ]; then
+	mv "$name" "$folder"
+elif [ "$(ls | grep -wc "$folder")" = 0 ]; then
+	mkdir "$folder"
+	mv "$name" "$folder"
+fi
